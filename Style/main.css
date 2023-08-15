@@ -1,0 +1,23 @@
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: rgb(243, 197, 204);
+}
+
+#board{
+    width: 90vw; /* Utiliza 90% da largura da viewport */
+    max-width: 1800px; /* Define um limite máximo de largura */
+    height: 100vh;
+    background-color: #222;
+    border: 2px solid #fff;
+    position: relative;
+}
+
+#player{
+    background-color: #f7278f; /* Cor rosa metálico */
+    position: absolute;
+    
+}
