@@ -107,7 +107,7 @@ class Player {
         
     
     }
-    for (let i = 0; i < 32; i++) {
+    for (let i = 0; i < 128; i++) {
         const brick = new Bricks();
         }
 
@@ -145,6 +145,28 @@ class Player {
                const playerBottom = this.player.positionY;
                const playerLeft = this.player.positionX;
                const playerRight = playerLeft + this.player.width;
+
+               const bricks = document.getElementsByClassName("bricks");
+            for (const brick of bricks) {
+                if (!brick.classList.contains("broken")) {  // Check if brick is not broken
+                    const brickRect = brick.getBoundingClientRect();
+                    const ballRect = this.domElement.getBoundingClientRect();
+
+                    if (
+                        ballRect.left < brickRect.right &&
+                        ballRect.right > brickRect.left &&
+                        ballRect.top < brickRect.bottom &&
+                        ballRect.bottom > brickRect.top
+                    ) {
+                        brick.classList.add("broken");  // Mark the brick as broken
+                        directionY *= -1;
+                }
+            } 
+                   
+        }
+
+
+
 
                if (
                    this.positionY <= playerBottom &&

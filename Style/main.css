@@ -13,7 +13,7 @@ body{
     height: 100vh;
     background-color: #222;
     border: 2px solid #fff;
-    position: relative;
+    position: sticky;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -30,10 +30,10 @@ body{
 }
 
 .bricks{
-    position: relative;
-    background-color:rgb(156, 223, 200);
+    background-color: rgb(156, 223, 200);
     border: 4px solid #222;
-    margin-top: 100px;
+    width: 5vw; /* Largura dos bricks */
+    height: 2vh; /* Altura dos bricks */
     
 }
 
@@ -41,6 +41,9 @@ body{
     background-color: white;
     border-radius: 50%;
     position: absolute;
+}
+.broken{
+    background-color: #222;
 }
 
 
