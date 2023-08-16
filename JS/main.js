@@ -78,7 +78,7 @@ class Player {
     class Bricks{
         constructor() {
             this.width = 5;
-            this.height = 1;
+            this.height = 2;
             this.positionX = 0;
             this.positionY = 0;
             this.domElement = null;
@@ -154,14 +154,14 @@ class Player {
                    directionY = 1; 
                }
 
-               if (this.positionY < (110 - this.height) && directionY === 1) {
+               if (this.positionY < (113 - this.height) && directionY === 1) {
                    this.positionY++;
                } else {
                    directionY = -1;
                    this.positionY--;
                }
 
-               if (this.positionX <= 0 && directionX === -1) {
+               if (this.positionX <= 1 && directionX === -1) {
                    directionX = 1;
                } else if (this.positionX < (104 - this.width) && directionX === 1) {
                    this.positionX++;
@@ -172,7 +172,7 @@ class Player {
 
                this.domElement.style.bottom = this.positionY + "vh";
                this.domElement.style.left = this.positionX + "vw";
-           }, 50);
+           }, 40);
     }
 }
 
