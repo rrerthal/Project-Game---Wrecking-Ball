@@ -130,11 +130,11 @@ const player = new Player();
         parentElm.appendChild(this.domElement);
      }
 
-     moveDown() {
+       moveDown() {
         setInterval(() => {
-            this.positionY++; // Mover a bola para baixo
-            this.domElement.style.bottom = this.positionY + "vh"; // Atualizar a posição na tela
-        }, 100); // Chame a função a cada 16ms para uma animação suave
+            this.positionY++; 
+            this.domElement.style.bottom = this.positionY + "vh"; 
+        }, 100); 
     }
 }
 
