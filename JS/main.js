@@ -1,6 +1,6 @@
 class Game {
     constructor(){
-       
+        
     }
     start(){
         this.attachEventListener();
@@ -16,8 +16,10 @@ class Game {
                 }
             });
         }
+       
+    }
     
-}
+
 
 
 
@@ -62,7 +64,7 @@ class Player {
 }
 
 
-const player = new Player();
+
 
 
 
@@ -105,12 +107,12 @@ const player = new Player();
         }
 
    class Ball{
-    constructor(){
+    constructor(player){
         this.width = 15;
         this.height = 15;
         this.positionX = (50 - (this.width / 2)) * (90 / 100);
         this.positionY = 20;
-         
+        this.player = player;
 
 
         this.createDomElement();
@@ -131,10 +133,41 @@ const player = new Player();
      }
 
        moveDown() {
-        setInterval(() => {
-            this.positionY++; 
-            this.domElement.style.bottom = this.positionY + "vh"; 
-        }, 100); 
+        let directionY = 1;
+        let directionX = 1;
+
+           setInterval(() => {
+               const playerBottom = this.player.positionY;
+               const playerLeft = this.player.positionX;
+               const playerRight = playerLeft + this.player.width;
+
+               if (
+                   this.positionY <= playerBottom &&
+                   this.positionX >= playerLeft &&
+                   this.positionX <= playerRight
+               ) {
+                   directionY = 1; 
+               }
+
+               if (this.positionY < (110 - this.height) && directionY === 1) {
+                   this.positionY++;
+               } else {
+                   directionY = -1;
+                   this.positionY--;
+               }
+
+               if (this.positionX <= 0 && directionX === -1) {
+                   directionX = 1;
+               } else if (this.positionX < (104 - this.width) && directionX === 1) {
+                   this.positionX++;
+               } else {
+                   directionX = -1;
+                   this.positionX--;
+               }
+
+               this.domElement.style.bottom = this.positionY + "vh";
+               this.domElement.style.left = this.positionX + "vw";
+           }, 20);
     }
 }
 
@@ -142,9 +175,9 @@ const player = new Player();
 
 
 
-    
- const ball = new Ball();
-
+ const player = new Player();
+ const ball = new Ball(player);
+ 
 
  const game = new Game();
  game.start();
