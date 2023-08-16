@@ -145,5 +145,6 @@ const player = new Player();
     
  const ball = new Ball();
 
+
  const game = new Game();
  game.start();
