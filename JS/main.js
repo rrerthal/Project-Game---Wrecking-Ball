@@ -28,8 +28,8 @@ class Game {
 
 class Player {
     constructor() {
-        this.width = 10;
-        this.height = 2;
+        this.width = 7;
+        this.height = 0.5;
         this.positionX = (50 - (this.width / 2)) * (90 / 100);
         this.positionY = 12;
         this.domElement = null;
@@ -53,14 +53,19 @@ class Player {
 
     }
     moveLeft() {
-        this.positionX--;
-        this.domElement.style.left = this.positionX + "vw";
-    }
-    moveRight() {
-        this.positionX++;
-        this.domElement.style.left = this.positionX + "vw";
+        if (this.positionX > 0.9) { // Check left boundary
+            this.positionX--;
+            this.domElement.style.left = this.positionX + "vw";
+        }
     }
 
+    moveRight() {
+        
+        if (this.positionX < 82) { // Check right boundary
+            this.positionX++;
+            this.domElement.style.left = this.positionX + "vw";
+        }
+    }
 }
 
 
@@ -167,7 +172,7 @@ class Player {
 
                this.domElement.style.bottom = this.positionY + "vh";
                this.domElement.style.left = this.positionX + "vw";
-           }, 20);
+           }, 50);
     }
 }
 

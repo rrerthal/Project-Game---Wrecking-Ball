@@ -37,7 +37,7 @@ body{
 }
 
 #ball{
-    background-color: red;
+    background-color: white;
     border-radius: 50%;
     position: absolute;
 }
