@@ -1,6 +1,7 @@
 class Game {
     constructor(){
-      this.ball = null;  
+        this.ball = null;
+        this.score = new Score();
     }
     start(){
         this.attachEventListener();
@@ -18,7 +19,7 @@ class Game {
                     player.moveRight();
                 } else if (event.key === " ") { // Tecla de espaço
                     if (!this.ball) { // Se a bola ainda não foi criada
-                        this.ball = new Ball(player.positionX, player.positionY,player);
+                        this.ball = new Ball(player.positionX, player.positionY,player,this.score);
                     }
                 }
             });
@@ -26,7 +27,27 @@ class Game {
        
     }
     
-
+    class Score {
+        constructor() {
+            this.value = 0;
+            this.domElement = null;
+    
+            this.createDomElement();
+        }
+    
+        createDomElement() {
+            this.domElement = document.createElement("div");
+            this.domElement.id = "score";
+            this.domElement.innerText = ` ${this.value}`;
+            const parentElm = document.getElementById("board");
+            parentElm.appendChild(this.domElement);
+        }
+    
+        update(value) {
+            this.value += value;
+            this.domElement.innerText = ` ${this.value}`;
+        }
+    }
 
 
 
@@ -35,8 +56,8 @@ class Game {
 
 class Player {
     constructor() {
-        this.width = 7;
-        this.height = 0.5;
+        this.width = 10;
+        this.height = 0.4;
         this.positionX = (50 - (this.width / 2)) * (90 / 100);
         this.positionY = 12;
         this.domElement = null;
@@ -59,7 +80,7 @@ class Player {
 
     }
     moveLeft() {
-        const speed = 2;
+        const speed = 4;
         if (this.positionX > 1) { 
             this.positionX -= speed;
             this.domElement.style.left = this.positionX + "vw";
@@ -67,7 +88,7 @@ class Player {
     }
 
     moveRight() {
-        const speed = 2;
+        const speed = 4;
         if (this.positionX < 81) { 
             this.positionX += speed;
             this.domElement.style.left = this.positionX + "vw";
@@ -119,12 +140,13 @@ class Player {
         }
 
    class Ball{
-    constructor(playerPositionX, playerPositionY){
+    constructor(playerPositionX, playerPositionY,player,score){
         this.width = 15;
         this.height = 15;
         this.positionX = playerPositionX;
         this.positionY = playerPositionY;
         this.player = player;
+        this.score = score;
         
         this.createDomElement();
         this.moveDown();
@@ -166,14 +188,30 @@ class Player {
                     ) {
                         brick.classList.add("broken"); 
                         directionY *= -1;
+                        this.score.update(750 );
                 }
             } 
-                   
+
+            
+          
+            
+
+
+
+            
         }
+        
 
 
 
+               if(bricks.length === 0){
+                console.log("Game Over");  
+                clearInterval(interval);
+                window.location.href = "../win.html";
 
+               }
+                        
+        
                if (
                    this.positionY <= playerBottom &&
                    this.positionX >= playerLeft &&
@@ -204,11 +242,17 @@ class Player {
                    this.positionX--;
                }
 
+
+
+               
                this.domElement.style.bottom = this.positionY + "vh";
                this.domElement.style.left = this.positionX + "vw";
-           }, 40);
+           }, 20);
+        }
     }
-}
+    
+
+
 
 
 
