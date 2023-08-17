@@ -94,3 +94,20 @@ a{
     border-radius: 5px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
+p{
+    font-family: 'ArcadeClassic', sans-serif;
+     font-size: 10vh;
+     
+}
+#bricknator{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#gameover{
+    font-family: 'ArcadeClassic', sans-serif;
+     font-size: 10vh;
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+    }

@@ -2,6 +2,7 @@ class Game {
     constructor(){
         this.ball = null;
         this.score = new Score();
+        this.brokenBricks = 0;
     }
     start(){
         this.attachEventListener();
@@ -135,7 +136,7 @@ class Player {
         
     
     }
-    for (let i = 0; i < 128; i++) {
+    for (let i = 0; i < 1; i++) {
         const brick = new Bricks();
         }
 
@@ -175,11 +176,13 @@ class Player {
                const playerRight = playerLeft + this.player.width;
 
                const bricks = document.getElementsByClassName("bricks");
-            for (const brick of bricks) {
+                let totalBricks = 0;
+               for (const brick of bricks) {
+               
                 if (!brick.classList.contains("broken")) {  
                     const brickRect = brick.getBoundingClientRect();
                     const ballRect = this.domElement.getBoundingClientRect();
-
+                           totalBricks++;
                     if (
                         ballRect.left < brickRect.right &&
                         ballRect.right > brickRect.left &&
@@ -189,14 +192,22 @@ class Player {
                         brick.classList.add("broken"); 
                         directionY *= -1;
                         this.score.update(750 );
+                        this.brokenBricks++;
+
+                        if (totalBricks === 1) {
+                            console.log("All bricks broken");
+                            clearInterval(interval);
+                            window.location.href = "./win.html";
                 }
+            }
+                
             } 
 
             
           
             
 
-
+        
 
             
         }
@@ -204,13 +215,8 @@ class Player {
 
 
 
-               if(bricks.length === 0){
-                console.log("Game Over");  
-                clearInterval(interval);
-                window.location.href = "../win.html";
-
-               }
-                        
+              
+                
         
                if (
                    this.positionY <= playerBottom &&
@@ -241,7 +247,7 @@ class Player {
                    directionX = -1;
                    this.positionX--;
                }
-
+               
 
 
                
