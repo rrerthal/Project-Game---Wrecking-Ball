@@ -32,8 +32,8 @@ body{
 .bricks{
     background-color: rgb(156, 223, 200);
     border: 4px solid #222;
-    width: 5vw; /* Largura dos bricks */
-    height: 2vh; /* Altura dos bricks */
+    width: 5vw; 
+    height: 2vh; 
     
 }
 

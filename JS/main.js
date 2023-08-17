@@ -1,6 +1,6 @@
 class Game {
     constructor(){
-        
+      this.ball = null;  
     }
     start(){
         this.attachEventListener();
@@ -8,11 +8,18 @@ class Game {
     }
     
         attachEventListener(){
+           
+           
+           
             document.addEventListener("keydown", (event) => {
                 if (event.key === "ArrowLeft") {
                     player.moveLeft();
                 } else if (event.key === "ArrowRight") {
                     player.moveRight();
+                } else if (event.key === " ") { // Tecla de espaço
+                    if (!this.ball) { // Se a bola ainda não foi criada
+                        this.ball = new Ball(player.positionX, player.positionY,player);
+                    }
                 }
             });
         }
@@ -40,29 +47,29 @@ class Player {
     createDomElement() {
         this.domElement = document.createElement("div");
 
-        // set id
+       
         this.domElement.id = "player";
         this.domElement.style.width = this.width + "vw";
         this.domElement.style.height = this.height + "vh";
         this.domElement.style.left = this.positionX + "vw";
         this.domElement.style.bottom = this.positionY + "vh";
 
-        //append to the dom
         const parentElm = document.getElementById("board");
         parentElm.appendChild(this.domElement);
 
     }
     moveLeft() {
-        if (this.positionX > 0.9) { // Check left boundary
-            this.positionX--;
+        const speed = 2;
+        if (this.positionX > 1) { 
+            this.positionX -= speed;
             this.domElement.style.left = this.positionX + "vw";
         }
     }
 
     moveRight() {
-        
-        if (this.positionX < 82) { // Check right boundary
-            this.positionX++;
+        const speed = 2;
+        if (this.positionX < 81) { 
+            this.positionX += speed;
             this.domElement.style.left = this.positionX + "vw";
         }
     }
@@ -92,14 +99,14 @@ class Player {
             
           
     
-            // set id
+          
             this.domElement.className = "bricks";
             this.domElement.style.width = this.width + "vw";
             this.domElement.style.height = this.height + "vh";
             this.domElement.style.left = this.positionX + "vw";
             this.domElement.style.bottom = this.positionY + "vh";
             
-            //append to the dom
+            
             const parentElm = document.getElementById("board");
             parentElm.appendChild(this.domElement);
     
@@ -112,14 +119,13 @@ class Player {
         }
 
    class Ball{
-    constructor(player){
+    constructor(playerPositionX, playerPositionY){
         this.width = 15;
         this.height = 15;
-        this.positionX = (50 - (this.width / 2)) * (90 / 100);
-        this.positionY = 20;
+        this.positionX = playerPositionX;
+        this.positionY = playerPositionY;
         this.player = player;
-
-
+        
         this.createDomElement();
         this.moveDown();
     }
@@ -148,7 +154,7 @@ class Player {
 
                const bricks = document.getElementsByClassName("bricks");
             for (const brick of bricks) {
-                if (!brick.classList.contains("broken")) {  // Check if brick is not broken
+                if (!brick.classList.contains("broken")) {  
                     const brickRect = brick.getBoundingClientRect();
                     const ballRect = this.domElement.getBoundingClientRect();
 
@@ -158,7 +164,7 @@ class Player {
                         ballRect.top < brickRect.bottom &&
                         ballRect.bottom > brickRect.top
                     ) {
-                        brick.classList.add("broken");  // Mark the brick as broken
+                        brick.classList.add("broken"); 
                         directionY *= -1;
                 }
             } 
@@ -177,15 +183,15 @@ class Player {
                }
                
                if (this.positionY < playerBottom) {
-                console.log("Game Over");  // Substitua isso pela ação de finalizar o jogo
+                console.log("Game Over");  
                 clearInterval(interval);
-                window.location.href = "./gameover.html";   // Pare o loop de movimento da bola
+                window.location.href = "./gameover.html";  
             }
 
                if (this.positionY < (113 - this.height) && directionY === 1) {
                    this.positionY++;
                } else {
-                   directionY = -1;
+                   directionY = -1 ;
                    this.positionY--;
                }
 
@@ -209,7 +215,7 @@ class Player {
 
 
  const player = new Player();
- const ball = new Ball(player);
+ 
  
 
  const game = new Game();
