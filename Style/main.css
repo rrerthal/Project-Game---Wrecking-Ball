@@ -33,10 +33,10 @@ ul{
 }
 
 #player{
-    background-color: rgba(204, 44, 145, 0.4); 
+    background-color:rgb(243, 197, 204); 
     position: absolute;
     border-radius: 20%;
-    box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
+    box-shadow: rgb(243, 197, 204) 0px 5px,rgb(243, 197, 204) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
     
 }
 
@@ -49,14 +49,14 @@ ul{
 }
 #score{
     color: rgb(243, 197, 204);
-    font-size: 30vh;
+    font-size: 25vw;
     padding-top: 12vh;
     text-align: center;
     font-family: 'ArcadeClassic', sans-serif;
 }
 
 #ball{
-    background-color:#87ff2a;
+    background-color:#8124fc;
     border-radius: 50%;
     position: absolute;
 }
