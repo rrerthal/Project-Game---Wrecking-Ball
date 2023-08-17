@@ -136,7 +136,7 @@ class Player {
         
     
     }
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < 128; i++) {
         const brick = new Bricks();
         }
 
@@ -148,7 +148,8 @@ class Player {
         this.positionY = playerPositionY;
         this.player = player;
         this.score = score;
-        
+        this.paddleCollisionSound = document.getElementById("paddleCollisionSound");
+
         this.createDomElement();
         this.moveDown();
     }
@@ -193,8 +194,10 @@ class Player {
                         directionY *= -1;
                         this.score.update(750 );
                         this.brokenBricks++;
+                        brickCollisionSound.currentTime = 0; // Reset sound to start
+                        brickCollisionSound.play();
 
-                        if (totalBricks === 1) {
+                        if (totalBricks === 128) {
                             console.log("All bricks broken");
                             clearInterval(interval);
                             window.location.href = "./win.html";
@@ -224,6 +227,9 @@ class Player {
                    this.positionX <= playerRight
                ) {
                    directionY = 1; 
+                   this.paddleCollisionSound.currentTime = 0;
+                   this.paddleCollisionSound.play();
+                   
                }
                
                if (this.positionY < playerBottom) {
