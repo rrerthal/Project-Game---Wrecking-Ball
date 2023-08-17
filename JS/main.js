@@ -141,7 +141,7 @@ class Player {
         let directionY = 1;
         let directionX = 1;
 
-           setInterval(() => {
+         const interval =  setInterval(() => {
                const playerBottom = this.player.positionY;
                const playerLeft = this.player.positionX;
                const playerRight = playerLeft + this.player.width;
@@ -175,6 +175,12 @@ class Player {
                ) {
                    directionY = 1; 
                }
+               
+               if (this.positionY < playerBottom) {
+                console.log("Game Over");  // Substitua isso pela ação de finalizar o jogo
+                clearInterval(interval);
+                window.location.href = "./gameover.html";   // Pare o loop de movimento da bola
+            }
 
                if (this.positionY < (113 - this.height) && directionY === 1) {
                    this.positionY++;
